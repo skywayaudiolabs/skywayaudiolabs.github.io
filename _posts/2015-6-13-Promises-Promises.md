@@ -17,7 +17,7 @@ fs = require 'fs'
 {Promise} = require 'es6-promise'
 ```
 
-Ok, so we are using the `es6-promise` module - we need to import `Promise` (which we are doing with destructured assignement).
+Ok, so we are using the `es6-promise` module - we need to import `Promise` (which we are doing with destructured assignment).
 
 ```coffee
 myReadFile = (file) ->
@@ -29,7 +29,7 @@ myReadFile = (file) ->
         reject err
 ```
 
-Create a function with a new Promise object. The object returns two methods to use - resolve (call with data) and reject (call with an error). To passback data, call `resolve data`. Similarly, for errors, `reject err`.
+Create a function with a new Promise object. The object returns two methods to use - resolve (call with data) and reject (call with an error). To pass back data, call `resolve data`. Similarly, for errors, `reject err`.
 
 To run the function once...
 
@@ -41,7 +41,7 @@ myReadFile 'test.txt'
   console.log err
 ```
 
-The Promise.then method will be called when fs.readFile calls `resolve` method (with data as a parameter) and the Promise.catch method is invoked when `reject` is called (with err as a paramter).
+The Promise.then method will be called when fs.readFile calls `resolve` method (with data as a parameter) and the Promise.catch method is invoked when `reject` is called (with err as a parameter).
 
 Let's extend this example to a list of files where the `Promise.all` method will run when all of the Promises are completed.
 
@@ -56,7 +56,7 @@ Promise.all(allresponses)
   console.log err
 ```
 
-In this case, the `Promise.all` method is called when all of the Promise objects have been resovled.
+In this case, the `Promise.all` method is called when all of the Promise objects have been resolved.
 
 Ok, let's chain some functions together.
 
