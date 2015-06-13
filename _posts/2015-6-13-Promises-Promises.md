@@ -1,10 +1,6 @@
-i---
+---
 layout: post
 title: promises, promises
-categories: []
-tags: []
-published: True
-
 ---
 
 OMG - I think I am grokking it!!! Very useful articles
