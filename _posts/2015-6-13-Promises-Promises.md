@@ -2,7 +2,7 @@
 layout: post
 title: promises, promises
 ---
-![]({{ site.baseurl }}/images/promises.png)
+![image]({{ site.baseurl }}/images/promises.png)
 
 OMG - I think I am grokking it!!! Very useful articles
 
