@@ -2,12 +2,14 @@
 layout: post
 title: promises, promises
 ---
+{{ site.baseurl }}/images/promises.png
 
 OMG - I think I am grokking it!!! Very useful articles
 
 * http://www.2ality.com/2014/10/es6-promises-api.html
 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 * http://www.html5rocks.com/en/tutorials/es6/promises/
+* http://javascriptplayground.com/blog/2015/02/promises/
 
 
 Ok, I did a simple little example. In this example, I am going to read in the contents of a file using async `fs.readfile`.
@@ -17,7 +19,7 @@ fs = require 'fs'
 {Promise} = require 'es6-promise'
 ```
 
-Ok, so we are using the `es6-promise` module - we need to import `Promise` (which we are doing with destructured assignment).
+Ok, so we are using the [`es6-promise`](https://github.com/jakearchibald/es6-promise) module - we need to import `Promise` (which we are doing with destructured assignment).
 
 ```coffee
 myReadFile = (file) ->
@@ -56,7 +58,7 @@ Promise.all(allresponses)
   console.log err
 ```
 
-In this case, the `Promise.all` method is called when all of the Promise objects have been resolved.
+In this case, the `Promise.all` method is called when all of the Promise objects have been resolved. A `reject` on any of the promises will trigger `.catch` and exit as well.
 
 Ok, let's chain some functions together.
 
