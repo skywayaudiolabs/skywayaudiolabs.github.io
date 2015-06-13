@@ -1,6 +1,6 @@
 ---
 layout: post
-title: promises, promises
+title: IMOW - Promises (in coffeescript)
 ---
 ![image]({{ site.baseurl }}/images/promises.png)
 
