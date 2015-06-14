@@ -4,7 +4,7 @@ title: IMOW - Promises (in coffeescript)
 ---
 ![image]({{ site.baseurl }}/images/promises.png)
 
-OMG - I think I am grokking it!!! Very useful articles
+Some useful articles
 
 * http://www.2ality.com/2014/10/es6-promises-api.html
 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -12,17 +12,17 @@ OMG - I think I am grokking it!!! Very useful articles
 * http://javascriptplayground.com/blog/2015/02/promises/
 
 
-Ok, I did a simple little example. In this example, I am going to read in the contents of a file using async `fs.readfile`.
+A simple example that reads in the contents of a file using async `fs.readfile` and prints to console.
 
 ```coffee
 fs = require 'fs'
 {Promise} = require 'es6-promise'
 ```
 
-Ok, so we are using the [`es6-promise`](https://github.com/jakearchibald/es6-promise) module - we need to import `Promise` (which we are doing with destructured assignment).
+Import `Promise` (using destructured assignment) from the [`es6-promise`](https://github.com/jakearchibald/es6-promise) module.
 
 ```coffee
-myReadFile = (file) ->
+readFile = (file) ->
   new Promise (resolve, reject) ->
     fs.readFile file, (err, data) ->
       if data?
@@ -31,12 +31,11 @@ myReadFile = (file) ->
         reject err
 ```
 
-Create a function with a new Promise object. The object returns two methods to use - resolve (call with data) and reject (call with an error). To pass back data, call `resolve data`. Similarly, for errors, `reject err`.
-
+Create a function with a new Promise object. The object returns two methods - resolve (call with data) and reject (call with an error). Use `fs.readFile`'s callback to return data, by calling `resolve data` and for errors, `reject err`.
 To run the function once...
 
 ```coffee
-myReadFile 'test.txt'
+readFile 'test.txt'
 .then (response) ->
   console.log response
 .catch (err) ->
@@ -45,13 +44,13 @@ myReadFile 'test.txt'
 
 The Promise.then method will be called when fs.readFile calls `resolve` method (with data as a parameter) and the Promise.catch method is invoked when `reject` is called (with err as a parameter).
 
-Let's extend this example to a list of files where the `Promise.all` method will run when all of the Promises are completed.
+Let's extend this example to a list of files where the `Promise.all` method runs when all of the Promises are completed.
 
 ```coffee
-files2 = ['test.txt', 'test2.txt', 'test3.txt']
-allresponses = files.map myReadFile
+files = ['test.txt', 'test2.txt', 'test3.txt']
+allReadFile = files.map readFile
 
-Promise.all(allresponses)
+Promise.all(allReadFile)
 .then (response) ->
   console.log response
 .catch (err) ->
@@ -60,23 +59,23 @@ Promise.all(allresponses)
 
 In this case, the `Promise.all` method is called when all of the Promise objects have been resolved. A `reject` on any of the promises will trigger `.catch` and exit as well.
 
-Ok, let's chain some functions together.
+Functions can be chained together with `.then`
 
 ```coffee
 myReadFile 'test.txt'
 .then (response) ->
-  console.log 'single run test with chainables'
-  console.log response
-  # return response
-  print response  # call print function
+  console.log "myReadFile is complete, now calling func2"
+  func2 response  # call func2
 .then (response) ->
   console.log response
-  jump response  # call jump function
+  func3 response  # call jump function
 .then (response) ->
   console.log response
 .catch (err) ->
   console.log err
 ```
+
+The return value is passed from one function to the next. The functions can be synchronous or async using promises.
 
 This is the most simple promise
 
